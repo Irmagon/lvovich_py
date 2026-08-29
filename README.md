@@ -48,7 +48,9 @@ fioincline/
   soap.py            SOAP-сервис
   app.py             FastAPI-приложение (маршруты, auth, автодокументация)
   wsdl/service.wsdl  WSDL-схема
-main.py              точка входа
+main.py              точка входа (uvicorn)
+pyproject.toml       упаковка/публикация (pip install)
+config.example.ini  пример конфигурации
 tests/               pytest-тесты (ядро + сервер)
 bench/benchmark.py   бенчмарк производительности
 ```
@@ -62,6 +64,12 @@ bench/benchmark.py   бенчмарк производительности
 
 ```
 python -m pip install -r requirements.txt
+```
+
+Установка как пакета (опционально, даёт консольную команду `fioincline`):
+
+```
+python -m pip install .
 ```
 
 ## Быстрый старт
@@ -132,6 +140,10 @@ buffer_kb = 64
 
 `[logging] enabled = false` полностью отключает запись в `server.log`
 (ускоряет обработку запросов).
+
+Конфигурация по умолчанию описана в файле [`config.example.ini`](./config.example.ini):
+скопируйте его в `config.ini` и отредактируйте под свой запуск. Параметры, которых
+нет в `config.ini`, берутся из значений по умолчанию (см. `fioincline/config.py`).
 
 Полное описание API и конфигурации — в файле [`service-doc.txt`](./service-doc.txt).
 

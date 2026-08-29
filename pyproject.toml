@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fioincline"
+version = "1.0.0"
+description = "Склонение русских ФИО, городов и организаций (REST/SOAP на FastAPI)"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+authors = [{ name = "Irmagon", email = "irmagon@gmail.com" }]
+dependencies = [
+    "fastapi>=0.110",
+    "uvicorn>=0.27",
+]
+
+[project.urls]
+Homepage = "https://github.com/Irmagon/lvovich_py"
+Source = "https://github.com/Irmagon/lvovich_py.git"
+Documentation = "https://github.com/Irmagon/lvovich_py"
+
+[project.scripts]
+fioincline = "main:run"
+
+[tool.setuptools]
+packages = ["fioincline", "fioincline.lvovich"]
+
+[tool.setuptools.package-data]
+fioincline = ["wsdl/*.wsdl", "testdata/*.json"]

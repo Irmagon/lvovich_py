@@ -1,7 +1,22 @@
+# Логи
 server.log
 server.err
+
+# Локальные артефакты тестов и сборки
 test-output/
-/python_embedded
-__pycache__/
 .pytest_cache/
+__pycache__/
 *.pyc
+*.pyo
+
+# Встраиваемый интерпретатор Python и его архив
+/python_embedded
+/python_embedded.zip
+
+# IDE / редакторы
+.idea/
+.vscode/
+*.swp
+
+# Конфигурация с секретами (пример — config.example.ini)
+config.ini
