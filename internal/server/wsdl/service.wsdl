@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions
+  targetNamespace="urn:LvovichService"
+  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+  xmlns:tns="urn:LvovichService"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+  <wsdl:types>
+    <xsd:schema targetNamespace="urn:LvovichService">
+      <xsd:element name="Incline">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="FirstName" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="LastName" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="MiddleName" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="Declension" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="Format" type="xsd:string" minOccurs="0"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="InclineResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="FirstName" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="LastName" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="MiddleName" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="Gender" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="Initials" type="xsd:string" minOccurs="0"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="GetGender">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="FirstName" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="LastName" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="MiddleName" type="xsd:string" minOccurs="0"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetGenderResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Gender" type="xsd:string" minOccurs="0"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="CityIn">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Name" type="xsd:string"/>
+            <xsd:element name="Gender" type="xsd:string" minOccurs="0"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="CityInResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Name" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="CityFrom">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Name" type="xsd:string"/>
+            <xsd:element name="Gender" type="xsd:string" minOccurs="0"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="CityFromResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Name" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="CityTo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Name" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="CityToResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Name" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="OrgIn">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Name" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="OrgInResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Name" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="OrgFrom">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Name" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="OrgFromResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Name" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="OrgTo">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Name" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="OrgToResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="Name" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+
+  <wsdl:message name="InclineInput">
+    <wsdl:part name="parameters" element="tns:Incline"/>
+  </wsdl:message>
+  <wsdl:message name="InclineOutput">
+    <wsdl:part name="parameters" element="tns:InclineResponse"/>
+  </wsdl:message>
+
+  <wsdl:message name="GetGenderInput">
+    <wsdl:part name="parameters" element="tns:GetGender"/>
+  </wsdl:message>
+  <wsdl:message name="GetGenderOutput">
+    <wsdl:part name="parameters" element="tns:GetGenderResponse"/>
+  </wsdl:message>
+
+  <wsdl:message name="CityInInput">
+    <wsdl:part name="parameters" element="tns:CityIn"/>
+  </wsdl:message>
+  <wsdl:message name="CityInOutput">
+    <wsdl:part name="parameters" element="tns:CityInResponse"/>
+  </wsdl:message>
+
+  <wsdl:message name="CityFromInput">
+    <wsdl:part name="parameters" element="tns:CityFrom"/>
+  </wsdl:message>
+  <wsdl:message name="CityFromOutput">
+    <wsdl:part name="parameters" element="tns:CityFromResponse"/>
+  </wsdl:message>
+
+  <wsdl:message name="CityToInput">
+    <wsdl:part name="parameters" element="tns:CityTo"/>
+  </wsdl:message>
+  <wsdl:message name="CityToOutput">
+    <wsdl:part name="parameters" element="tns:CityToResponse"/>
+  </wsdl:message>
+
+  <wsdl:message name="OrgInInput">
+    <wsdl:part name="parameters" element="tns:OrgIn"/>
+  </wsdl:message>
+  <wsdl:message name="OrgInOutput">
+    <wsdl:part name="parameters" element="tns:OrgInResponse"/>
+  </wsdl:message>
+
+  <wsdl:message name="OrgFromInput">
+    <wsdl:part name="parameters" element="tns:OrgFrom"/>
+  </wsdl:message>
+  <wsdl:message name="OrgFromOutput">
+    <wsdl:part name="parameters" element="tns:OrgFromResponse"/>
+  </wsdl:message>
+
+  <wsdl:message name="OrgToInput">
+    <wsdl:part name="parameters" element="tns:OrgTo"/>
+  </wsdl:message>
+  <wsdl:message name="OrgToOutput">
+    <wsdl:part name="parameters" element="tns:OrgToResponse"/>
+  </wsdl:message>
+
+  <wsdl:portType name="LvovichPortType">
+    <wsdl:operation name="Incline">
+      <wsdl:input message="tns:InclineInput"/>
+      <wsdl:output message="tns:InclineOutput"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetGender">
+      <wsdl:input message="tns:GetGenderInput"/>
+      <wsdl:output message="tns:GetGenderOutput"/>
+    </wsdl:operation>
+    <wsdl:operation name="CityIn">
+      <wsdl:input message="tns:CityInInput"/>
+      <wsdl:output message="tns:CityInOutput"/>
+    </wsdl:operation>
+    <wsdl:operation name="CityFrom">
+      <wsdl:input message="tns:CityFromInput"/>
+      <wsdl:output message="tns:CityFromOutput"/>
+    </wsdl:operation>
+    <wsdl:operation name="CityTo">
+      <wsdl:input message="tns:CityToInput"/>
+      <wsdl:output message="tns:CityToOutput"/>
+    </wsdl:operation>
+    <wsdl:operation name="OrgIn">
+      <wsdl:input message="tns:OrgInInput"/>
+      <wsdl:output message="tns:OrgInOutput"/>
+    </wsdl:operation>
+    <wsdl:operation name="OrgFrom">
+      <wsdl:input message="tns:OrgFromInput"/>
+      <wsdl:output message="tns:OrgFromOutput"/>
+    </wsdl:operation>
+    <wsdl:operation name="OrgTo">
+      <wsdl:input message="tns:OrgToInput"/>
+      <wsdl:output message="tns:OrgToOutput"/>
+    </wsdl:operation>
+  </wsdl:portType>
+
+  <wsdl:binding name="LvovichBinding" type="tns:LvovichPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="Incline">
+      <soap:operation soapAction="urn:Incline"/>
+      <wsdl:input><soap:body use="literal"/></wsdl:input>
+      <wsdl:output><soap:body use="literal"/></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGender">
+      <soap:operation soapAction="urn:GetGender"/>
+      <wsdl:input><soap:body use="literal"/></wsdl:input>
+      <wsdl:output><soap:body use="literal"/></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CityIn">
+      <soap:operation soapAction="urn:CityIn"/>
+      <wsdl:input><soap:body use="literal"/></wsdl:input>
+      <wsdl:output><soap:body use="literal"/></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CityFrom">
+      <soap:operation soapAction="urn:CityFrom"/>
+      <wsdl:input><soap:body use="literal"/></wsdl:input>
+      <wsdl:output><soap:body use="literal"/></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CityTo">
+      <soap:operation soapAction="urn:CityTo"/>
+      <wsdl:input><soap:body use="literal"/></wsdl:input>
+      <wsdl:output><soap:body use="literal"/></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OrgIn">
+      <soap:operation soapAction="urn:OrgIn"/>
+      <wsdl:input><soap:body use="literal"/></wsdl:input>
+      <wsdl:output><soap:body use="literal"/></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OrgFrom">
+      <soap:operation soapAction="urn:OrgFrom"/>
+      <wsdl:input><soap:body use="literal"/></wsdl:input>
+      <wsdl:output><soap:body use="literal"/></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OrgTo">
+      <soap:operation soapAction="urn:OrgTo"/>
+      <wsdl:input><soap:body use="literal"/></wsdl:input>
+      <wsdl:output><soap:body use="literal"/></wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+
+  <wsdl:service name="LvovichService">
+    <wsdl:port name="LvovichPort" binding="tns:LvovichBinding">
+      <soap:address location="http://localhost:3000/soap"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,4 @@
+server.log
+server.err
+test-output/
+/python_embedded
