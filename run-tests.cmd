@@ -3,6 +3,9 @@ chcp 65001 >nul
 setlocal EnableDelayedExpansion
 cd /d "%~dp0"
 
+set "PY=%~dp0python_embedded\python.exe"
+if not exist "%PY%" set "PY=python"
+
 set "OUT_DIR=%~dp0test-output"
 if not exist "%OUT_DIR%" mkdir "%OUT_DIR%"
 
@@ -10,33 +13,20 @@ for /f "usebackq delims=" %%i in (`powershell -NoProfile -Command "(Get-Date).To
 set "LOG=%OUT_DIR%\tests_%STAMP%.log"
 
 echo ===================================================
-echo  BUILD: go build -o fioincline-server.exe ./cmd/server
-echo ===================================================
-call go build -o fioincline-server.exe ./cmd/server
-if errorlevel 1 goto :buildfail
-
-echo.
-echo ===================================================
-echo  TESTS: go test ./... -v
+echo  TESTS: %PY% -m pytest tests -v
 echo  LOG:   %LOG%
 echo ===================================================
-call go test ./... -v > "%LOG%" 2>&1
-set "GORESULT=%errorlevel%"
+"%PY%" -m pytest tests -v > "%LOG%" 2>&1
+set "PYRESULT=%errorlevel%"
 type "%LOG%"
 
-if not "%GORESULT%"=="0" goto :testfail
+if not "%PYRESULT%"=="0" goto :testfail
 goto :testok
-
-:buildfail
-echo.
-echo [ERROR] BUILD FAILED - %DATE% %TIME%
-set "RC=BUILD_FAIL"
-goto :summary
 
 :testfail
 echo.
 echo [ERROR] TESTS FAILED - %DATE% %TIME%
-set "RC=TEST_FAIL:%GORESULT%"
+set "RC=TEST_FAIL:%PYRESULT%"
 goto :summary
 
 :testok
