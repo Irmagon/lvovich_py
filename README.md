@@ -50,6 +50,8 @@ fioincline/
   wsdl/service.wsdl  WSDL-схема
 main.py              точка входа (uvicorn)
 pyproject.toml       упаковка/публикация (pip install)
+build.spec           PyInstaller-сборка standalone .exe
+build.cmd            скрипт сборки бинарника (Windows)
 config.example.ini  пример конфигурации
 tests/               pytest-тесты (ядро + сервер)
 bench/benchmark.py   бенчмарк производительности
@@ -167,6 +169,20 @@ python bench/benchmark.py --n 2000 --threads 8
 
 Измеряются ~мс/оп и ~запросов/сек для REST- и SOAP-эндпоинтов последовательно
 и в пуле потоков. Методика и замеры — в [`service-doc.txt`](./service-doc.txt).
+
+## Сборка бинарника
+
+Можно собрать сервер в единый standalone `.exe` (без установленного Python) с
+помощью [PyInstaller](https://pyinstaller.org/):
+
+```
+python -m pip install pyinstaller
+build.cmd                       # или: python -m PyInstaller build.spec
+```
+
+Результат — `dist\fioincline.exe`. При запуске бинарник ищет `config.ini` рядом
+с собой (см. [`config.example.ini`](./config.example.ini)); WSDL-схема вшита в
+исполняемый файл.
 
 ## Лицензия
 

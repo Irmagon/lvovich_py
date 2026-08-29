@@ -4,11 +4,17 @@
 или после установки:  fioincline
 """
 import os
+import sys
 
 from fioincline import Config, create_app
 
 
 def _find_config():
+    # В скомпилированном бинарнике (PyInstaller) config.ini ищется рядом с exe.
+    if getattr(sys, "frozen", False):
+        exe_dir = os.path.dirname(os.path.abspath(sys.executable))
+        cand = os.path.join(exe_dir, "config.ini")
+        return cand if os.path.isfile(cand) else "config.ini"
     for cand in ("config.ini", os.path.join(os.path.dirname(os.path.abspath(__file__)), "config.ini")):
         if os.path.isfile(cand):
             return cand

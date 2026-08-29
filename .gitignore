@@ -12,6 +12,11 @@ __pycache__/
 # Встраиваемый интерпретатор Python и его архив
 /python_embedded
 /python_embedded.zip
+/python_embedded.7z
+
+# PyInstaller-сборка
+/build/
+/dist/
 
 # IDE / редакторы
 .idea/
