@@ -170,9 +170,26 @@ def test_swagger_ui(client):
     assert "text/html" in r.headers["content-type"]
 
 
+def test_openapi(client):
+    r = client.get("/openapi.json", headers=_h())
+    assert r.status_code == 200
+    assert "application/json" in r.headers["content-type"]
+    paths = r.json().get("paths", {})
+    for p in ("/api/incline", "/api/gender", "/api/city/in", "/api/org/to"):
+        assert p in paths
+
+
+def test_redoc(client):
+    r = client.get("/redoc", headers=_h())
+    assert r.status_code == 200
+    assert "text/html" in r.headers["content-type"]
+
+
 def test_swagger_disabled():
     cfg = make_cfg(swagger=False)
     app = create_app(cfg, "server.log")
     cl = TestClient(app)
     r = cl.get("/api-docs", headers=_h())
+    assert r.status_code == 404
+    r = cl.get("/openapi.json", headers=_h())
     assert r.status_code == 404

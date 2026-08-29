@@ -32,7 +32,7 @@
 - Склонение названий городов (предложный, родительный, винительный)
 - Склонение названий организаций (предложный, родительный, винительный)
 - Определение пола по ФИО (male / female / androgynous)
-- REST + SOAP + WSDL + Swagger UI
+- REST + SOAP + WSDL + автодокументация Swagger UI (FastAPI /api-docs)
 - Конфигурация через `config.ini` (порт, токен, whitelist IP, Swagger)
 - Асинхронный логгер запросов
 
@@ -46,9 +46,8 @@ fioincline/
   jsonx.py           JSON с сохранением порядка ключей
   logger.py          асинхронный/синхронный логгер
   soap.py            SOAP-сервис
-  app.py             FastAPI-приложение (маршруты, auth, swagger)
+  app.py             FastAPI-приложение (маршруты, auth, автодокументация)
   wsdl/service.wsdl  WSDL-схема
-  swagger/static/    статика Swagger UI
 main.py              точка входа
 tests/               pytest-тесты (ядро + сервер)
 bench/benchmark.py   бенчмарк производительности
@@ -93,7 +92,9 @@ python -m uvicorn main:app --host 0.0.0.0 --port 3000
 | REST | `/api/org/in` | Организация предложный (JSON) |
 | REST | `/api/org/from` | Организация родительный (JSON) |
 | REST | `/api/org/to` | Организация винительный (JSON) |
-| Swagger | `/api-docs` | Интерактивная документация |
+| Swagger UI | `/api-docs` | Интерактивная документация (автогенерация FastAPI) |
+| OpenAPI | `/openapi.json` | OpenAPI-схема (автогенерация FastAPI) |
+| ReDoc | `/redoc` | Альтернативная документация |
 
 ### Пример REST-запроса
 

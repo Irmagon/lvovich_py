@@ -15,7 +15,7 @@
   [server]
   address = 0.0.0.0     ; адрес прослушивания
   port = 3000           ; порт
-  swagger = true        ; включить Swagger UI (/api-docs)
+  swagger = true        ; включить автодокументацию Swagger UI (/api-docs)
 
   [auth]
   token =               ; пусто = авторизация выключена; иначе Bearer-токен
@@ -30,7 +30,8 @@
   Параметры (чтение — fioincline/config.py):
     server.address   - адрес прослушивания
     server.port      - порт
-    server.swagger   - true/false — показывать /api-docs
+    server.swagger   - true/false — показывать автодокументацию
+                       (/api-docs, /openapi.json, /redoc)
     auth.token       - Bearer-токен; пусто = авторизация отключена
     auth.allowed_ips - список разрешённых IP
     logging.enabled  - true/false — вести server.log;
@@ -287,7 +288,9 @@
   REST        /api/org/in    Организация предложный (JSON)
   REST        /api/org/from  Организация родительный (JSON)
   REST        /api/org/to    Организация винительный (JSON)
-  Swagger     /api-docs      Интерактивная документация
+  Swagger UI  /api-docs      Интерактивная документация (FastAPI autodoc)
+  OpenAPI     /openapi.json  OpenAPI-схема
+  ReDoc       /redoc         Альтернативная документация
 
 ===============================================================================
   БЕНЧМАРКИ ПРОИЗВОДИТЕЛЬНОСТИ
