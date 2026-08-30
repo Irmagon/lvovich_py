@@ -239,6 +239,17 @@ def create_app(cfg, log_path="server.log"):
     with open(os.path.join(base, "wsdl", "service.wsdl"), "rb") as f:
         wsdl_bytes = f.read()
 
+    # Подставляем адрес и порт из config.ini в soap:address location.
+    # Если адрес привязки — wildcard (0.0.0.0/::), отдаём localhost,
+    # т.к. клиенту бесполезен адрес прослушивания.
+    host = st.cfg.address
+    if not host or host in ("0.0.0.0", "::", "[::]"):
+        host = "localhost"
+    location = "http://%s:%d/soap" % (host, st.cfg.port)
+    wsdl_text = wsdl_bytes.decode("utf-8").replace(
+        "http://localhost:3000/soap", location)
+    wsdl_bytes = wsdl_text.encode("utf-8")
+
     def _log_access(ip, request, prefix=None):
         if not st.log.is_enabled():
             return

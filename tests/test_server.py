@@ -164,6 +164,23 @@ def test_wsdl(client):
     assert "text/xml" in r.headers["content-type"]
 
 
+def test_wsdl_location_uses_config_address_port():
+    cfg = make_cfg(address="10.1.2.3", port=8080)
+    app = create_app(cfg, "server.log")
+    cl = TestClient(app)
+    r = cl.get("/wsdl", headers=_h())
+    assert "http://10.1.2.3:8080/soap" in r.text
+
+
+def test_wsdl_location_wildcard_address_uses_localhost():
+    cfg = make_cfg(address="0.0.0.0", port=3000)
+    app = create_app(cfg, "server.log")
+    cl = TestClient(app)
+    r = cl.get("/wsdl", headers=_h())
+    assert "http://localhost:3000/soap" in r.text
+    assert "0.0.0.0" not in r.text
+
+
 def test_swagger_ui(client):
     r = client.get("/api-docs", headers=_h())
     assert r.status_code == 200
