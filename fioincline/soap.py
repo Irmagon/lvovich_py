@@ -93,10 +93,11 @@ def _append_if(fields, name, value):
 
 
 def _response(resp_el, fields):
-    b = [_RESP_PREFIX, resp_el, "<", resp_el, ">"]
+
+    b = [_RESP_PREFIX, resp_el, ">"]
     for name, value in fields:
         b.append("<%s>%s</%s>" % (name, _xml_escape(value), name))
-    b.append("</%s></tns:%s></soap:Body></soap:Envelope>" % (resp_el, resp_el))
+    b.append("</tns:%s></soap:Body></soap:Envelope>" % (resp_el))
     return "".join(b)
 
 
